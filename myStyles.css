@@ -1,0 +1,20 @@
+/*this .body tag is connected to the class id; any tag that has this class id does what the command is*/
+.body {
+    background-color: aqua;
+}
+
+/* # refers to a tag connected to an actual id; any tag that has this id does what the command is; can override
+class id's*/
+#textbox{
+    border: 2px solid black;
+    padding: 10px;
+    width: 200px
+}
+
+#coreGPA{
+    color: blue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    font-size: larger;
+    font-weight: bold;
+}
