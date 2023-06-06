@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core GPA Converter</title>
+    <!--link syncs to the CSS stylesheet to be able to format the template of the server-->
+    <link rel="stylesheet" type="text/css" href="./Styling/myStyles.css">
+</head>
+<body>
+    <form action>
+        <!--insert html tags --> 
+        <!--h2 tag that creates a nice title, just makes it look organized :) -->
+        <h2>CORE GPA CONVERTER</h2> 
+
+        <!--IS 201 Grade Drop Down; we create an id for all the selects and labels so the function
+        down below knows what inputs (values in the options below) to use to calculate-->
+        <!-- created a div to divide the parts of the server doc and to help with formatting; id and class make
+        it possible for the CSS file to know what design to give certain parts -->
+        <div id="textbox" class="body">
+            <label for="is201Grade">IS 201 Grade</label>
+            <select id ="is201Grade" name="options">
+                <option value = "4.0"> A </option>
+                <option value = "3.7"> A- </option>
+                <option value = "3.4"> B+ </option>
+                <option value = "3.0"> B </option>
+                <option value = "2.7"> B- </option>
+                <option value = "2.4"> C+ </option>
+                <option value = "2.0"> C </option>
+                <option value = "1.7"> C- </option>
+                <option value = "1.4"> D+ </option>
+                <option value = "1.0"> D </option>
+                <option value = "0.7"> D- </option>
+                <option value = "0.0"> F </option>
+            </select>
+            <!-- br tags add extra spacing to separate the labels and dropdowns -->
+            <br>
+            <br>
+
+            <!--ACC 200 Grade Drop Down menu-->
+            <label for="acc200Grade"> ACC 200 Grade</label>
+            <select id="acc200Grade" name="options">
+                <option value = "4.0"> A </option>
+                <option value = "3.7"> A- </option>
+                <option value = "3.4"> B+ </option>
+                <option value = "3.0"> B </option>
+                <option value = "2.7"> B- </option>
+                <option value = "2.4"> C+ </option>
+                <option value = "2.0"> C </option>
+                <option value = "1.7"> C- </option>
+                <option value = "1.4"> D+ </option>
+                <option value = "1.0"> D </option>
+                <option value = "0.7"> D- </option>
+                <option value = "0.0"> F </option>
+            </select>
+
+            <br>
+            <br>
+            <!--IS 303 Grade Drop Down-->    
+            <label for="is303Grade">IS 303 Grade</label>
+            <select id ="is303Grade" name="options">
+                <option value = "4.0"> A </option>
+                <option value = "3.7"> A- </option>
+                <option value = "3.4"> B+ </option>
+                <option value = "3.0"> B </option>
+                <option value = "2.7"> B- </option>
+                <option value = "2.4"> C+ </option>
+                <option value = "2.0"> C </option>
+                <option value = "1.7"> C- </option>
+                <option value = "1.4"> D+ </option>
+                <option value = "1.0"> D </option>
+                <option value = "0.7"> D- </option>
+                <option value = "0.0"> F </option>
+            </select>
+        </div>
+        
+        <br>
+
+        <!--new div created for reason stated above in first div -->
+        <div id="textbox" class="body">
+            <!--Essay Score Drop Down-->
+            <label for="essay">Essay Score</label>
+            <select id ="essay" name="options">
+                <option value="0"> 0 </option>
+                <option value="1"> 1 </option>
+                <option value="2"> 2 </option>
+                <option value="3"> 3 </option>
+                <option value="4"> 4 </option>
+            </select>
+            <br>
+            <br>   
+            
+            <!--insert input tags for the next two labels in order to retrieve inputs written by user -->
+            <!--Last 30 Credits Input-->
+            <label for="last30GPA">Last 30 Credits GPA</label>
+            <input id ="last30GPA" name= "text">
+        </div>
+        
+        <br>
+
+        <div id="textbox" class="body">
+            <!--Overall GPA Input-->
+            <label for="overallGPA"> What was the overall GPA?</label>
+            <input id ="overallGPA" name= "text">
+        </div>
+    
+        
+    <br>   
+    <!--button to calculate GPA; calls on calcGPA function each time it is clicked-->
+    <button type="button" onclick="calcGPA()">Calculate GPA</button>
+    </form>
+    
+    <br>
+    <!-- html tag for displaying the calculated GPA; use the coreGPA id to help the p tag know what needs to be 
+    displayed --> 
+    <p id = "coreGPA"></p>
+    
+    <script>
+        //This function is called when the user clicks on the calcGPA button
+        function calcGPA()
+        {
+            //Extracts the values from the HTML inputs by their assigned id and assigns them to variables
+            //The value extracted is converted from a string to a float/decimal
+            fIS201 = parseFloat(document.getElementById("is201Grade").value);
+            fACC200 = parseFloat(document.getElementById("acc200Grade").value);
+            fIS303= parseFloat(document.getElementById("is303Grade").value);
+            fOverallGPA = parseFloat(document.getElementById("overallGPA").value);
+            fLast30GPA = parseFloat(document.getElementById("last30GPA").value);
+            fEssay = parseInt(document.getElementById("essay").value);
+
+            //calculates new gpa
+            fFinalGPA = ((fIS201 * .3) + (fIS303 * .3) + (fACC200 * .05) + (fOverallGPA * .12) + (fLast30GPA * .18) + (fEssay * .05)).toFixed(2);
+
+            //Displays the calculated GPA to the HTML label named "coreGPA" (used above in p tag)
+            document.getElementById("coreGPA").innerHTML = "Core GPA is " + fFinalGPA;
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
